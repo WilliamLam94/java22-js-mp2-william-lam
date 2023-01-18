@@ -6,7 +6,33 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Game RPS</title>
 		<link rel="stylesheet" href="css/style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap"
+			rel="stylesheet"
+		/>
 		<script src="./js/script.js" defer></script>
 	</head>
-	<body></body>
+	<body>
+		<main>
+			<article class="selections">
+				<button class="selection" data-selection="rock">🗿</button>
+				<button class="selection" data-selection="papper">📃</button>
+				<button class="selection" data-selection="scissors">✂️</button>
+			</article>
+			<article class="results">
+				<div>
+					Player
+					<span class="result-score">0</span>
+				</div>
+				<div>
+					Computer
+					<span class="result-score">0</span>
+				</div>
+			</article>
+			<!--<div class="result-selection winner">🗿</div>
+			<div class="result-selection">📃</div> -->
+		</main>
+	</body>
 </html>
