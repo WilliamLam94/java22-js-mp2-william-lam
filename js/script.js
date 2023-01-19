@@ -1,7 +1,7 @@
 const selectionButtons = document.querySelectorAll('[data-seletion]');
 const finalColumn = document.querySelector('[data-final-column]');
-const yourScoreSpan = document.querySelector(['data-your-score']);
-const computerScoreSpan = document.querySelector(['data-computer-score']);
+const yourScoreSpan = document.querySelector('[data-your-score]');
+const computerScoreSpan = document.querySelector('[data-computer-score]');
 
 const arrSelection = [
 	{ name: 'rock', emoji: '🗿', beats: 'scissors' },
