@@ -11,6 +11,7 @@ submitBtn.addEventListener('click', () => {
 	playerName.innerText = document.getElementById('myText').value;
 	playerForm.style.display = 'none';
 	gameBoard.style.display = 'block';
+	playGame();
 });
 
 const arrSelection = [
@@ -23,19 +24,21 @@ let score = 0;
 
 console.log('selectionButtons', selectionButtons);
 
-selectionButtons.forEach((selectionButton) => {
-	selectionButton.addEventListener('click', (e) => {
-		const selectionName = selectionButton.dataset.selection;
+function playGame() {
+	selectionButtons.forEach((selectionButton) => {
+		selectionButton.addEventListener('click', (e) => {
+			const selectionName = selectionButton.dataset.selection;
 
-		console.log('selectionButton', selectionButton);
+			console.log('selectionButton', selectionButton);
 
-		console.log('selectionName', selectionName);
-		const selection = arrSelection.find(
-			(selection) => selection.name === selectionName
-		);
-		makeSelection(selection);
+			console.log('selectionName', selectionName);
+			const selection = arrSelection.find(
+				(selection) => selection.name === selectionName
+			);
+			makeSelection(selection);
+		});
 	});
-});
+}
 
 function makeSelection(selection) {
 	const computerSelection = randomSelection();
@@ -52,9 +55,6 @@ function makeSelection(selection) {
 function incrementScore(scoreSpan) {
 	scoreSpan.innerText = parseInt(scoreSpan.innerText) + 1;
 	score++;
-	if (score === 3) {
-		isWinner;
-	}
 }
 
 function addSelectionResult(selection, winner) {
@@ -72,4 +72,20 @@ function isWinner(selection, opponentSelection) {
 function randomSelection() {
 	const randomIndex = Math.floor(Math.random() * arrSelection.length);
 	return arrSelection[randomIndex];
+}
+
+let player;
+let computer;
+let result;
+
+function gameOver() {
+	if (player == computer) {
+		return 'Draw!';
+	} else if (computer == 'Rock') {
+		return player == 'Paper' ? 'You Win!' : 'You Lose!';
+	} else if (computer == 'Paper') {
+		return player == 'Scissors' ? 'You Win!' : 'You Lose!';
+	} else if (computer == 'Scissors') {
+		return player == 'Rock' ? 'You Win!' : 'You Lose!';
+	}
 }
