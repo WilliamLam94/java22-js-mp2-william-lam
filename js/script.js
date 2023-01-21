@@ -2,6 +2,16 @@ const selectionButtons = document.querySelectorAll('[data-selection]');
 const finalColumn = document.querySelector('[data-final-column]');
 const yourScoreSpan = document.querySelector('[data-your-score]');
 const computerScoreSpan = document.querySelector('[data-computer-score]');
+const playerName = document.querySelector('.playerName');
+const playerForm = document.getElementById('playerForm');
+const submitBtn = document.getElementById('myButton');
+const gameBoard = document.querySelector('.gameBoard');
+
+submitBtn.addEventListener('click', () => {
+	playerName.innerText = document.getElementById('myText').value;
+	playerForm.style.display = 'none';
+	gameBoard.style.display = 'block';
+});
 
 const arrSelection = [
 	{ name: 'rock', emoji: '🗿', beats: 'scissors' },
