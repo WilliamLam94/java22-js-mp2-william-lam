@@ -6,8 +6,12 @@ const playerName = document.querySelector('.playerName');
 const playerForm = document.getElementById('playerForm');
 const submitBtn = document.getElementById('myButton');
 const gameBoard = document.querySelector('.gameBoard');
+const resultsBoard = document.querySelector('.results');
+const gameOverContainer = document.querySelector('.gameOverContainer');
+const playAgainBtn = document.querySelector('.playAgainBtn');
 
-submitBtn.addEventListener('click', () => {
+submitBtn.addEventListener('click', (e) => {
+	e.preventDefault();
 	playerName.innerText = document.getElementById('myText').value;
 	playerForm.style.display = 'none';
 	gameBoard.style.display = 'block';
@@ -20,18 +24,11 @@ const arrSelection = [
 	{ name: 'scissors', emoji: '✂️', beats: 'paper' },
 ];
 
-let score = 0;
-
-console.log('selectionButtons', selectionButtons);
-
 function playGame() {
 	selectionButtons.forEach((selectionButton) => {
 		selectionButton.addEventListener('click', (e) => {
 			const selectionName = selectionButton.dataset.selection;
 
-			console.log('selectionButton', selectionButton);
-
-			console.log('selectionName', selectionName);
 			const selection = arrSelection.find(
 				(selection) => selection.name === selectionName
 			);
@@ -48,13 +45,49 @@ function makeSelection(selection) {
 	addSelectionResult(computerSelection, computerWinner);
 	addSelectionResult(selection, yourWinner);
 
-	if (yourWinner) incrementScore(yourScoreSpan);
+	if (yourWinner) {
+		incrementScore(yourScoreSpan);
+	}
 	if (computerWinner) incrementScore(computerScoreSpan);
+
+	if (
+		Number(yourScoreSpan.innerText) === 3 ||
+		Number(computerScoreSpan.innerText) === 3
+	) {
+		selectionButtons.forEach((selectionButton) => {
+			selectionButton.disabled = true;
+		});
+
+		gameOverContainer.style.display = 'block';
+
+		playAgainBtn.addEventListener('click', () => {
+			playAgain();
+		});
+	}
+}
+
+function playAgain() {
+	yourScoreSpan.innerText = 0;
+	computerScoreSpan.innerText = 0;
+	const answers = document.querySelectorAll('.result-selection');
+
+	console.log('answers.length', answers.length);
+
+	answers.forEach((answer) => {
+		answer.parentNode.removeChild(answer);
+	});
+
+	selectionButtons.forEach((selectionButton) => {
+		selectionButton.disabled = false;
+	});
+
+	gameOverContainer.style.display = 'none';
+
+	playGame();
 }
 
 function incrementScore(scoreSpan) {
 	scoreSpan.innerText = parseInt(scoreSpan.innerText) + 1;
-	score++;
 }
 
 function addSelectionResult(selection, winner) {
@@ -72,20 +105,4 @@ function isWinner(selection, opponentSelection) {
 function randomSelection() {
 	const randomIndex = Math.floor(Math.random() * arrSelection.length);
 	return arrSelection[randomIndex];
-}
-
-let player;
-let computer;
-let result;
-
-function gameOver() {
-	if (player == computer) {
-		return 'Draw!';
-	} else if (computer == 'Rock') {
-		return player == 'Paper' ? 'You Win!' : 'You Lose!';
-	} else if (computer == 'Paper') {
-		return player == 'Scissors' ? 'You Win!' : 'You Lose!';
-	} else if (computer == 'Scissors') {
-		return player == 'Rock' ? 'You Win!' : 'You Lose!';
-	}
 }
