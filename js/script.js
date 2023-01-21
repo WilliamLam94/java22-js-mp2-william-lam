@@ -1,4 +1,4 @@
-const selectionButtons = document.querySelectorAll('[data-seletion]');
+const selectionButtons = document.querySelectorAll('[data-selection]');
 const finalColumn = document.querySelector('[data-final-column]');
 const yourScoreSpan = document.querySelector('[data-your-score]');
 const computerScoreSpan = document.querySelector('[data-computer-score]');
@@ -9,9 +9,17 @@ const arrSelection = [
 	{ name: 'scissors', emoji: '✂️', beats: 'paper' },
 ];
 
+let score = 0;
+
+console.log('selectionButtons', selectionButtons);
+
 selectionButtons.forEach((selectionButton) => {
 	selectionButton.addEventListener('click', (e) => {
 		const selectionName = selectionButton.dataset.selection;
+
+		console.log('selectionButton', selectionButton);
+
+		console.log('selectionName', selectionName);
 		const selection = arrSelection.find(
 			(selection) => selection.name === selectionName
 		);
@@ -33,6 +41,10 @@ function makeSelection(selection) {
 
 function incrementScore(scoreSpan) {
 	scoreSpan.innerText = parseInt(scoreSpan.innerText) + 1;
+	score++;
+	if (score === 3) {
+		isWinner;
+	}
 }
 
 function addSelectionResult(selection, winner) {
