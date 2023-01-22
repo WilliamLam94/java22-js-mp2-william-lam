@@ -48,8 +48,9 @@ function makeSelection(selection) {
 	if (yourWinner) {
 		incrementScore(yourScoreSpan);
 	}
-	if (computerWinner) incrementScore(computerScoreSpan);
-
+	if (computerWinner) {
+		incrementScore(computerScoreSpan);
+	}
 	if (
 		Number(yourScoreSpan.innerText) === 3 ||
 		Number(computerScoreSpan.innerText) === 3
@@ -82,8 +83,6 @@ function playAgain() {
 	});
 
 	gameOverContainer.style.display = 'none';
-
-	playGame();
 }
 
 function incrementScore(scoreSpan) {
