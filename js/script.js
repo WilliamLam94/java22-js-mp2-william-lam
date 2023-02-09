@@ -9,6 +9,7 @@ const gameBoard = document.querySelector('.gameBoard');
 const resultsBoard = document.querySelector('.results');
 const gameOverContainer = document.querySelector('.gameOverContainer');
 const playAgainBtn = document.querySelector('.playAgainBtn');
+const result = document.querySelector('.result');
 
 submitBtn.addEventListener('click', (e) => {
 	e.preventDefault();
@@ -55,6 +56,18 @@ function makeSelection(selection) {
 		Number(yourScoreSpan.innerText) === 3 ||
 		Number(computerScoreSpan.innerText) === 3
 	) {
+		if (Number(yourScoreSpan.innerText) === 3) {
+			const pEl = document.createElement('p');
+			pEl.innerText = 'You Win!🤟';
+			result.append(pEl);
+		}
+
+		if (Number(computerScoreSpan.innerText) === 3) {
+			const pEl = document.createElement('p');
+			pEl.innerText = 'Computer Wins!🤖';
+			result.append(pEl);
+		}
+
 		selectionButtons.forEach((selectionButton) => {
 			selectionButton.disabled = true;
 		});
@@ -70,6 +83,8 @@ function makeSelection(selection) {
 function playAgain() {
 	yourScoreSpan.innerText = 0;
 	computerScoreSpan.innerText = 0;
+	result.innerHTML = '';
+
 	const answers = document.querySelectorAll('.result-selection');
 
 	console.log('answers.length', answers.length);

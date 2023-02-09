@@ -52,12 +52,19 @@ body {
 	font-size: 2rem;
 }
 
+.result {
+	padding: 20px;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+}
+
 .gameOverContainer {
 	display: none;
 }
 
 .gameOverText {
-	padding: 30px 40% 0px 40%;
+	padding: 0px 40% 0px 40%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
